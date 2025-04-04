@@ -59,4 +59,15 @@ router.put('/:id', (req, res) => {
     }
 })
 
+router.get('/vehiculo/:idVehiculo', (req, res) => {
+    imagenvehiculoController.listarImagenesPorVehiculo(req.params.idVehiculo)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((e) => {
+            console.log(e);
+            res.status(500).send();
+        });
+});
+
 export default router;

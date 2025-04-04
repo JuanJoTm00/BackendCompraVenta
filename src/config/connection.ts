@@ -1,13 +1,28 @@
-import sql, { ConnectionPool } from "mssql";
+//import sql, { ConnectionPool } from "mssql";
+//import { sqlConfig } from "./config";
+
+
+//export default async function GetConnection(): Promise<ConnectionPool> {
+    //try {
+        //const conn = await sql.connect(sqlConfig);
+        //return conn;
+    //} catch (error) {
+        //console.log(error);
+        //throw error;
+    //}
+//}
+
+import sql from "mssql";
 import { sqlConfig } from "./config";
 
-
-export default async function GetConnection(): Promise<ConnectionPool> {
+export default async function GetConnection() {
     try {
         const conn = await sql.connect(sqlConfig);
         return conn;
     } catch (error) {
-        console.log(error);
+        console.error("Error al conectar con la base de datos:", error);
         throw error;
     }
 }
+
+

@@ -31,7 +31,7 @@ export const Agregar = async (Administrador: Administrador): Promise<boolean> =>
 
 export const Eliminar = async (id: number): Promise<boolean> => {
     try {
-        let tsql = `DELETE FROM Administrador WHERE id=${id}`;
+        let tsql = `DELETE FROM Administrador WHERE idadminstrador=${id}`;
         const pool = await GetConnection();
         let rs = await pool.query(tsql);
         if (rs != undefined) {
@@ -45,7 +45,7 @@ export const Eliminar = async (id: number): Promise<boolean> => {
 
 export const Editar = async (usr: Administrador, id: number): Promise<boolean> => {
     try {
-        let tsql = `UPDATE Administrador SET Nombre='${usr.Nombre}', Email=${usr.Email}',Contrasena=${usr.Contrasena}' WHERE id=${id}`;
+        let tsql = `UPDATE dbo.Administrador SET Nombre='${usr.Nombre}', Email='${usr.Email}',Contrasena='${usr.Contrasena}' WHERE Idadminstrador=${id}`;
         const pool = await GetConnection();
         let rs = await pool.query(tsql);
         if (rs != undefined) {

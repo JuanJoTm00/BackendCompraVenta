@@ -56,3 +56,14 @@ export const Editar = async (usr: Imagenvehiculo, id: number): Promise<boolean> 
         throw error;
     }
 }
+
+export const ListarPorVehiculo = async (idVehiculo: number): Promise<Imagenvehiculo[]> => {
+    try {
+        let tsql = `SELECT * FROM Imagenvehiculo WHERE IdVehiculo = ${idVehiculo}`;
+        const pool = await GetConnection();
+        let rs = await pool.query<Imagenvehiculo>(tsql);
+        return rs ? rs.recordset : [];
+    } catch (error) {
+        throw error;
+    }
+};

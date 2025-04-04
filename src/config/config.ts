@@ -1,10 +1,12 @@
-export const sqlConfig = {
+ export     const sqlConfig = {
     user: 'sa',
     password: '123',
-    database: 'compraventa',
+    database: 'Compraventa',
     server: 'localhost',
     options: {
         encrypt: true,
         trustServerCertificate: true
     }
 }
+
+

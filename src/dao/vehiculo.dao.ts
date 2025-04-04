@@ -31,23 +31,30 @@ export const Agregar = async (vehiculo: vehiculo): Promise<boolean> => {
 
 export const Eliminar = async (id: number): Promise<boolean> => {
     try {
-        let tsql = `DELETE FROM Vehiculo WHERE id=${id}`;
         const pool = await GetConnection();
-        let rs = await pool.query(tsql);
-        if (rs != undefined) {
-            return rs.rowsAffected.length == 1;
-        }
-        return false;
+
+        // Primero, eliminar las imágenes asociadas al vehículo
+        let deleteImagesTsql = `DELETE FROM Imagenvehiculo WHERE IdVehiculo=${id}`;
+        await pool.query(deleteImagesTsql);
+
+        // Luego, eliminar el vehículo
+        let deleteVehiculoTsql = `DELETE FROM Vehiculo WHERE Idvehiculo=${id}`;
+        let rs = await pool.query(deleteVehiculoTsql);
+
+        return rs.rowsAffected.length == 1;
     } catch (error) {
         throw error;
     }
-}
+};
+
 
 export const Editar = async (usr: vehiculo, id: number): Promise<boolean> => {
     try {
-        let tsql = `UPDATE vehiculo SET Marca='${usr.Marca}', Modelo=${usr.Modelo}',Ano=${usr.Ano}',Kilometraje=${usr.Kilometraje}',Tipo=${usr.Tipo}',Descripcion=${usr.Descripcion}',ImagenPrincipal=${usr.ImagenPrincipal}' WHERE id=${id}`;
+        let tsql = `UPDATE dbo.vehiculo SET Marca='${usr.Marca}', Modelo='${usr.Modelo}', Ano=${usr.Ano}, Kilometraje=${usr.Kilometraje}, Tipo='${usr.Tipo}', Descripcion='${usr.Descripcion}', ImagenPrincipal='${usr.ImagenPrincipal}' WHERE Idvehiculo=${id}`;
+        
         const pool = await GetConnection();
         let rs = await pool.query(tsql);
+        
         if (rs != undefined) {
             return rs.rowsAffected.length == 1;
         }
@@ -55,5 +62,5 @@ export const Editar = async (usr: vehiculo, id: number): Promise<boolean> => {
     } catch (error) {
         throw error;
     }
-}
+};
 

@@ -35,3 +35,12 @@ export const ActualizarImagenvehiculo = async (usr: Imagenvehiculo, id: string):
         throw error;
     }
 }
+
+export const listarImagenesPorVehiculo = async (idVehiculo: string): Promise<Imagenvehiculo[]> => {
+    try {
+        let id = parseInt(idVehiculo);
+        return await imagenvehiculoDAo.ListarPorVehiculo(id);
+    } catch (error) {
+        throw error;
+    }
+};
