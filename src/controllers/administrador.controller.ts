@@ -35,3 +35,15 @@ export const ActualizarAdministrador = async (usr: Administrador, id: string): P
         throw error;
     }
 }
+
+export const IniciarSesion = async (nombre: string, contrasena: string): Promise<Administrador | null> => {
+    try {
+        // Llama directamente a la función IniciarSesion del DAO
+        return await AdministradorDao.IniciarSesion(nombre, contrasena);
+    } catch (error) {
+        console.error("ERROR BACKEND (Controller IniciarSesion):", error);
+        throw error; // Propaga el error para que sea manejado en el router
+    }
+}
+
+

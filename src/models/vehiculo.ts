@@ -1,3 +1,5 @@
+import { Imagenvehiculo } from "./imagenvehiculo";
+
 export interface vehiculo{
     Idvehiculo: number;
     Marca: string;
@@ -7,6 +9,5 @@ export interface vehiculo{
     Tipo: "Moto"|"Carro";
     Descripcion:string;
     ImagenPrincipal:string;
-
-
+    Imagenes?: Imagenvehiculo; // ¡Agregar esta línea!
 }

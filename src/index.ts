@@ -8,7 +8,9 @@ import GetConnection from './config/connection';
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors({
+    origin: 'http://localhost:4200' 
+}));
 const PORT = 3000;
 
 app.use('/api/administrador', administradorRouter);

@@ -11,9 +11,9 @@ export const listarImagenvehiculos = async (): Promise<Imagenvehiculo[]> => {
     }
 }
 
-export const CrearImagenvehiculo = async (vehiculo: Imagenvehiculo): Promise<boolean> => {
+export const CrearImagenvehiculo = async (Imagenvehiculo: Imagenvehiculo): Promise<boolean> => {
     try {
-        return await imagenvehiculoDAo.Agregar(vehiculo);
+        return await imagenvehiculoDAo.Agregar(Imagenvehiculo);
     } catch (error) {
         throw error;
     }
